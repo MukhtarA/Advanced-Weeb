@@ -1,39 +1,112 @@
 {
-  "name": "advanced-web",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@dalax/inhalt",
+  "version": "0.2.3",
+  "main": "lib/ts/index.js",
+  "module": "lib/ts/index.d.ts",
+  "typings": "lib/ts/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "@azimutlabs/eslint-config/legacy",
+      "@azimutlabs/eslint-config/prettier",
+      "@azimutlabs/eslint-config/jest",
+      "./eslint-config/react"
+    ]
+  },
+  "eslintIgnore": [
+    "**/node_modules",
+    "**/lib"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn ci",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "eslint --no-ignore --cache --max-warnings 0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "scripts": {
+    "ci": "run-p ci:*",
+    "ci:lint": "eslint --cache --max-warnings 0 src",
+    "ci:test": "jest --passWithNoTests src",
+    "clean": "rm -rf lib",
+    "compile": "yarn clean && tsc --outDir lib/ts -p src -d",
+    "start": "start-storybook -p 6006",
+    "deploy": "yarn compile && yarn publish --access public"
+  },
   "dependencies": {
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@tippyjs/react": "^4.1.0",
+    "@types/classnames": "^2.2.10",
     "@types/jest": "^24.0.0",
+    "@types/lodash": "^4.14.160",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/testing-library__dom": "^7.5.0",
+    "bootstrap-4-grid": "^3.4.0",
+    "classnames": "^2.2.6",
+    "emotion-rgba": "^0.0.8",
+    "fp-ts": "^2.8.1",
+    "hex-rgb": "^4.1.0",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "typescript": "^3.9.5",
+    "utility-types": "^3.10.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@azimutlabs/eslint-config": "^0.2.0",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.5",
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-info": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@types/react-router-dom": "^5.1.5",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.3.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-array-func": "^3.1.6",
+    "eslint-plugin-functional": "^3.0.1",
+    "eslint-plugin-import": "^2.21.1",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.9",
+    "prettier": "^2.0.5",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "ts-loader": "^8.0.1",
+    "yarn-run-all": "^3.1.1"
   }
 }
