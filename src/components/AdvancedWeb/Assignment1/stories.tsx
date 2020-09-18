@@ -8,7 +8,7 @@ import { Header } from './Header';
 import { ToDoList } from './ToDoList/component';
 
 export default {
-  title: 'Assignments/A1',
+  title: 'Assignments/A2',
 };
 
 export const Basic: FC = () => (
